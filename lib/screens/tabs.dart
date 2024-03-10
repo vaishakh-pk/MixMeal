@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:mixmeal/main.dart';
 import 'package:mixmeal/models/meal.dart';
 import 'package:mixmeal/screens/categories.dart';
+import 'package:mixmeal/screens/filters.dart';
 import 'package:mixmeal/screens/meals.dart';
+import 'package:mixmeal/widgets/main_drawer.dart';
 
 class TabsScreen extends StatefulWidget {
   const TabsScreen({super.key});
@@ -44,6 +46,21 @@ class _TabsScreenState extends State<TabsScreen> {
     }
   }
 
+  void _setScreen(String identifier)
+  {
+    if(identifier == 'filters')
+    {
+     Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=> FiltersScreen()));
+    }
+    else
+    {
+      Navigator.of(context).pop();
+    }
+  }
+
+
+  //Build Logic
+
   @override
   Widget build(BuildContext context) {
     Widget activePage = CategoriesScreen(
@@ -63,6 +80,7 @@ class _TabsScreenState extends State<TabsScreen> {
       appBar: AppBar(
         title: Text(activePageTitle),
       ),
+      drawer: MainDrawer(onSelectScreen:  _setScreen),
       body: activePage,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedPageIndex,
