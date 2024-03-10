@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mixmeal/data/dummy_data.dart';
 import 'package:mixmeal/models/meal.dart';
@@ -7,13 +6,14 @@ import 'package:mixmeal/widgets/category_grid_item.dart';
 import 'package:mixmeal/models/category.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({super.key, required this.onToggleFavourite});
+ CategoriesScreen({super.key, required this.onToggleFavourite, required this.availabeleMeals});
 
+  List<Meal> availabeleMeals;
   final void Function(Meal meal) onToggleFavourite;
 
   void _selectCategory(BuildContext context, MealCategory selectedCategory) {
 
-    final filteredMeals = dummyMeals.where((meal) => meal.categories.contains(selectedCategory.id)).toList();
+    final filteredMeals = availabeleMeals.where((meal) => meal.categories.contains(selectedCategory.id)).toList();
 
     Navigator.of(context).push(MaterialPageRoute(
         builder: (ctx) => MealsScreen(title: selectedCategory.title, meals: filteredMeals,onToggleFavourite: onToggleFavourite,)));
