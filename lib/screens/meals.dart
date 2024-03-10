@@ -25,7 +25,7 @@ class MealsScreen extends StatelessWidget {
             'Uh oh ..... Nothing here',
             style: Theme.of(context)
                 .textTheme
-                .bodyLarge!
+                .titleLarge!
                 .copyWith(color: Theme.of(context).colorScheme.onBackground),
           ),
           const SizedBox(
