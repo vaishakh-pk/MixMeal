@@ -6,17 +6,16 @@ import 'package:mixmeal/widgets/category_grid_item.dart';
 import 'package:mixmeal/models/category.dart';
 
 class CategoriesScreen extends StatelessWidget {
- CategoriesScreen({super.key, required this.onToggleFavourite, required this.availabeleMeals});
+ CategoriesScreen({super.key, required this.availabeleMeals});
 
   List<Meal> availabeleMeals;
-  final void Function(Meal meal) onToggleFavourite;
 
   void _selectCategory(BuildContext context, MealCategory selectedCategory) {
 
     final filteredMeals = availabeleMeals.where((meal) => meal.categories.contains(selectedCategory.id)).toList();
 
     Navigator.of(context).push(MaterialPageRoute(
-        builder: (ctx) => MealsScreen(title: selectedCategory.title, meals: filteredMeals,onToggleFavourite: onToggleFavourite,)));
+        builder: (ctx) => MealsScreen(title: selectedCategory.title, meals: filteredMeals)));
   }
 
   @override
